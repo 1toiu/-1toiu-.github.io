@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>NBA球星档案</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #1a1a1a;
+            color: white;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #FFD700;
+            margin-bottom: 2rem;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .players {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .player-card {
+            background: #2a2a2a;
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .player-image {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            color: #00BFFF;
+            margin-bottom: 0.5rem;
+        }
+
+        .team {
+            color: #FF4500;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .stats li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #333;
+        }
+
+        /* 新增颜色类 */
+        .morant { border-left: 5px solid #00BFFF; }
+        .giannis { border-left: 5px solid #FFD700; }
+        .durant { border-left: 5px solid #32CD32; }
+        .curry { border-left: 5px solid #FF69B4; }
+        .james { border-left: 5px solid #FF6347; }
+        .irving { border-left: 5px solid #8A2BE2; }  /* 欧文专属紫色 */
+
+        .back-btn {
+            padding: 8px 16px;
+            background: #2a2a2a;
+            color: #00BFFF;
+            border: 1px solid #00BFFF;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #00BFFF;
+            color: white;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>NBA超级巨星档案</h1>
+       <a href="1.html">返回</a> 
+        <div class="players">
+            <!-- 贾·莫兰特 -->
+            <div class="player-card morant">
+                <img src="https://cdn.nba.com/headshots/nba/latest/1040x760/1629630.png" 
+                     alt="贾·莫兰特" class="player-image">
+                <h2>贾·莫兰特</h2>
+                <p class="team">孟菲斯灰熊 | 控球后卫</p>
+                <p>出生日期：1999-08-10</p>
+                <ul class="stats">
+                    <li>🏆 2届NBA全明星</li>
+                    <li>🚀 2020年最佳新秀</li>
+                    <li>💨 生涯场均27.4分</li>
+                    <li>🔥 2022年进步最快球员</li>
+                </ul>
+            </div>
+
+            <!-- 扬尼斯·阿德托昆博 -->
+            <div class="player-card giannis">
+                <img src="https://cdn.nba.com/headshots/nba/latest/1040x760/203507.png" 
+                     alt="扬尼斯·阿德托昆博" class="player-image">
+                <h2>扬尼斯·阿德托昆博</h2>
+                <p class="team">密尔沃基雄鹿 | 大前锋</p>
+                <p>出生日期：1994-12-06</p>
+                <ul class="stats">
+                    <li>🏆 2届MVP</li>
+                    <li>🏆 2021年总冠军</li>
+                    <li>🦵 希腊怪物</li>
+                    <li>⭐ 6届全明星</li>
+                </ul>
+            </div>
+
+            <!-- 凯文·杜兰特 -->
+            <div class="player-card durant">
+                <img src="https://cdn.nba.com/headshots/nba/latest/1040x760/201142.png" 
+                     alt="凯文·杜兰特" class="player-image">
+                <h2>凯文·杜兰特</h2>
+                <p class="team">菲尼克斯太阳 | 小前锋</p>
+                <p>出生日期：1988-09-29</p>
+                <ul class="stats">
+                    <li>🏆 4届得分王</li>
+                    <li>🏆 2届总冠军</li>
+                    <li>🎯 180俱乐部成员</li>
+                    <li>🌟 13届全明星</li>
+                </ul>
+            </div>
+
+            <!-- 斯蒂芬·库里 -->
+            <div class="player-card curry">
+                <img src="https://cdn.nba.com/headshots/nba/latest/1040x760/201939.png" 
+                     alt="斯蒂芬·库里" class="player-image">
+                <h2>斯蒂芬·库里</h2>
+                <p class="team">金州勇士 | 控球后卫</p>
+                <p>出生日期：1988-03-14</p>
+                <ul class="stats">
+                    <li>🏆 4届总冠军</li>
+                    <li>🎯 历史三分王</li>
+                    <li>✨ 2届MVP</li>
+                    <li>🔫 生涯三分命中率42.8%</li>
+                </ul>
+            </div>
+
+            <!-- 勒布朗·詹姆斯 -->
+            <div class="player-card james">
+                <img src="https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png" 
+                     alt="勒布朗·詹姆斯" class="player-image">
+                <h2>勒布朗·詹姆斯</h2>
+                <p class="team">洛杉矶湖人 | 小前锋</p>
+                <p>出生日期：1984-12-30</p>
+                <ul class="stats">
+                    <li>👑 历史得分王</li>
+                    <li>🏆 4届总冠军</li>
+                    <li>⚡ 4届MVP</li>
+                    <li>📅 19届全明星</li>
+                </ul>
+            </div>
+
+            <!-- 凯里·欧文 -->
+            <div class="player-card irving">
+                <img src="https://cdn.nba.com/headshots/nba/latest/1040x760/202681.png" 
+                     alt="凯里·欧文" class="player-image">
+                <h2>凯里·欧文</h2>
+                <p class="team">达拉斯独行侠 | 控球后卫</p>
+                <p>出生日期：1992-03-23</p>
+                <ul class="stats">
+                    <li>🏆 2016年总冠军</li>
+                    <li>🌀 7届全明星</li>
+                    <li>🎨 历史级控球手</li>
+                    <li>🔥 生涯场均23.4分</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
