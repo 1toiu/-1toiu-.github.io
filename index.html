@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人介绍 - 张元星</title>
-    <!-- 引入字体图标 -->
+    <title>张元星 - 个人简介</title>
+    <meta name="description" content="前端开发者张元星的个人主页">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* 基础重置 */
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a363d9;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -19,45 +23,59 @@
             line-height: 1.6;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: #2d3436;
+            min-height: 100vh;
         }
 
-        /* 头部样式 */
         .header {
             text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(45deg, #6c5ce7, #a363d9);
+            padding: 100px 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             color: white;
             margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: -10%;
+            width: 120%;
+            height: 100px;
+            background: white;
+            transform: rotate(-3deg);
         }
 
         .header h1 {
-            font-size: 2.5em;
+            font-size: 2.8em;
             margin-bottom: 15px;
             animation: slideDown 1s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
-        /* 主要内容容器 */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            display: grid;
+            grid-gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         }
 
-        /* 卡片式布局 */
         .card {
             background: white;
             border-radius: 15px;
             padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
 
-        /* 技能进度条 */
         .skill-bar {
             background: #eee;
             border-radius: 10px;
@@ -66,42 +84,113 @@
         }
 
         .skill-progress {
-            background: #6c5ce7;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             height: 100%;
             border-radius: 10px;
             width: 0;
             transition: width 1s ease;
+            position: relative;
         }
 
-        /* 联系图标 */
+        .skill-progress::after {
+            content: attr(data-percent);
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 12px;
+        }
+
         .contact-icons {
             display: flex;
+            flex-direction: column;
             gap: 20px;
-            justify-content: center;
             margin-top: 30px;
         }
 
         .contact-icons a {
-            color: #6c5ce7;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 12px;
+            background: rgba(108, 92, 231, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .contact-icons a i {
             font-size: 24px;
-            transition: transform 0.3s ease;
+            min-width: 30px;
         }
 
         .contact-icons a:hover {
-            transform: scale(1.2);
+            background: rgba(108, 92, 231, 0.15);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateX(10px);
         }
 
-        /* 简单动画 */
+        .fa-bilibili {
+            color: #00A1D6;
+        }
+
+        .donate-btn {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px 0;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 60px 20px;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .contact-icons a {
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+            .contact-icons i {
+                font-size: 20px;
+            }
+        }
+
         @keyframes slideDown {
             from { transform: translateY(-50px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
-        }
-
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .skills {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -112,47 +201,91 @@
     </header>
 
     <div class="container">
-        <!-- 关于我 -->
         <section class="card">
             <h2>👋 关于我</h2>
-            <p>我是张元星，对前端开发和UI设计充满热情。喜欢将创意转化为可交互的网页，目前正在深入学习JavaScript和Vue框架。</p>
+            <p>这是我做的第一个网站，或许没有什么功能，如果您有好的建议，可以点击下方的联系作者，如果你也爱好web，对这方面感兴趣，也可以和我一起交流学习，也可以对我进行支持，虽然现在还没有实用性的功能，不过我会不断的完善和学习，感谢您的支持！</p>
+            <button class="donate-btn" onclick="showQRCode()">支持作者</button>
         </section>
 
-        <!-- 技能 -->
         <section class="card">
             <h2>🛠 技术技能</h2>
             <div class="skill">
                 <p>HTML/CSS</p>
-                <div class="skill-bar"><div class="skill-progress" style="width:85%"></div></div>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-percent="10%" style="width:10%"></div>
+                </div>
             </div>
             <div class="skill">
                 <p>JavaScript</p>
-                <div class="skill-bar"><div class="skill-progress" style="width:70%"></div></div>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-percent="4%" style="width:4%"></div>
+                </div>
             </div>
             <div class="skill">
-                <p>UI设计</p>
-                <div class="skill-bar"><div class="skill-progress" style="width:65%"></div></div>
+                <p>Vue.js</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-percent="4%" style="width:4%"></div>
+                </div>
             </div>
         </section>
 
-        <!-- 联系 -->
         <section class="card">
             <h2>📮 联系我</h2>
             <div class="contact-icons">
-                <a href="https://wx.mail.qq.com/list/readtemplate?name=login_jump.html" title="邮箱"><i class="fas fa-envelope"></i></a>
-                <a href="https://github.com/yourusername" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://weixin.qq.com/" title="微信"><i class="fab fa-weixin"></i></a>
+                <a href="mailto:yourname@example.com">
+                    <i class="fas fa-envelope"></i>
+                    邮箱联系
+                </a>
+                <a href="https://space.bilibili.com/1765730259/favlist?fid=1490452559&ftype=create" target="_blank" title="Bilibili主页">
+                    <i class="fab fa-bilibili"></i>
+                    <span>B站主页</span>
+                </a>
+                <a href="https://github.com/yourusername" target="_blank">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+                <a href="https://v.douyin.com/wVNKToWfDJo/ 8@3.com :2pm" target="_blank">
+                    <i class="fab fa-tiktok"></i>
+                    抖音主页
+                </a>
+                <a href="javascript:void(0)" onclick="showQRCode()">
+                    <i class="fab fa-weixin"></i>
+                    微信联系
+                </a>
             </div>
         </section>
     </div>
 
+    <div id="qrModal" class="modal" onclick="hideQRCode()">
+        <div class="modal-content">
+            <h3>感谢支持！</h3>
+            <img src="https://github.com/1toiu/my-qrcode/blob/main/wechat.jpg?raw=true" 
+                 alt="微信收款码"
+                 style="width: 250px; height: 250px; margin: 20px 0;">
+            <p>扫描二维码支持我的创作</p>
+        </div>
+    </div>
+
     <script>
-        // 页面加载后触发进度条动画
         window.onload = function() {
             document.querySelectorAll('.skill-progress').forEach(progress => {
                 progress.style.width = progress.style.width;
             });
         };
+
+        function showQRCode() {
+            document.getElementById('qrModal').style.display = 'flex';
+        }
+
+        function hideQRCode() {
+            document.getElementById('qrModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('qrModal')) {
+                hideQRCode();
+            }
+        }
     </script>
 </body>
 </html>
